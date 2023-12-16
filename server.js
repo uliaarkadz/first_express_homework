@@ -80,6 +80,42 @@ app.get("/magic", (req, res) => {
   );
 });
 
+//**************** */
+//Hungry for more?
+//*************** */
+
+//*************** */
+// Fibonacci
+//*************** */
+// Add Fibonnaci as a comment in your application.
+// Create a route 'fibonacci'
+// This route will take one param, the number we will operate on.
+// If the number param is not a fibonacci number, print out "I can tell this is not a fibonacci number."
+// If the number is a Fibonacci number print out "Very good. It is Fibonacci."
+
+app.get("/fibonacci/:number", (req, res) => {
+  const number = req.params.number;
+  if (isFibonacci(number)) {
+    res.send("<h1>Very good. It is Fibonacci.</h1>");
+  } else {
+    res.send("<h1>I can tell this is not a fibonacci number.</h1>");
+  }
+});
+
+//function to check if number is persfect squre
+function isPerfectSquare(x) {
+  let s = parseInt(Math.sqrt(x));
+  return s * s == x;
+}
+
+//function to check if number is fibonacci
+function isFibonacci(number) {
+  return (
+    isPerfectSquare(5 * number * number + 4) ||
+    isPerfectSquare(5 * number * number - 4)
+  );
+}
+
 //*********************** */
 app.listen(3000, () => {
   console.log("Server is running");
