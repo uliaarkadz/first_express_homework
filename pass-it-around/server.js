@@ -7,16 +7,18 @@ const app = express();
 let numberOfBottles = 99;
 
 app.get("/", (req, res) => {
-  let bottles = numberOfBottles - 1;
   res.send(
-    `<h1>${numberOfBottles} Bottles of beer on the wall</h1><a href ='/${bottles}'> take one down, pass it around</a>`
+    `<h1>${numberOfBottles} Bottles of beer on the wall</h1><a href ='/${
+      numberOfBottles - 1
+    }'> take one down, pass it around</a>`
   );
 });
 
 app.get("/:number_of_bottles", (req, res) => {
-  if (numberOfBottles > 0) {
+  let number = req.params.number_of_bottles;
+  if (number > 0) {
     res.send(
-      `<h2>${numberOfBottles} Bottles of beer on the wall</h2><a href ='/${numberOfBottles--}'> take one down, pass it around</a>`
+      `<h2>${number--} Bottles of beer on the wall</h2><a href ='/${number}'> take one down, pass it around</a>`
     );
   } else {
     res.send(`<h1>No more beer left!!</h1><a href ='/'> Start Over</a>`);
